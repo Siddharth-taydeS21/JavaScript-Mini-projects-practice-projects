@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f7f7;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 160px;
+}
+
+.note-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+}
+
+/* Left icon buttons */
+.left-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  position: absolute;
+  bottom: -190px;
+}
+
+.add-delete-btns {
+  position: absolute;
+  bottom: -259px;
+  display: flex;
+  column-gap: 11px;
+}
+
+#add-note {
+  padding: 11px 17px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  background-color: #d6d6d6;
+  box-shadow: 1px 3px 3px grey;
+  background-color: #dcdcdc;
+}
+
+#delete-all-notes {
+  padding: 11px 13px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  background-color: #d64848;
+  box-shadow: 1px 3px 3px grey;
+}
+
+.left-icons button {
+  width: 156px;
+  height: 50px;
+  border-radius: 8px;
+  background: white;
+  border: none;
+  box-shadow: 1px 3px 3px grey;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+
+/* Right color dots */
+.right-colors {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.black {
+  background: black;
+}
+
+.purple {
+  background: #a855f7;
+}
+
+.orange {
+  background: #fb923c;
+}
+
+.teal {
+  background: #14b8a6;
+}
+
+/* Stack */
+.stack {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.card {
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  background-color: white;
+  box-shadow: 5px 11px 20px grey;
+}
+
+.card:nth-child(1) {
+  z-index: 0;
+  left: -245px;
+  opacity: 0.6
+}
+
+.card:nth-child(2) {
+  z-index: 3;
+  transform: scale(1.07);
+}
+
+.card:nth-child(3) {
+  z-index: 1;
+  /* transform: translateY(20px) scale(0.96); */
+  opacity: 0.6;
+  left: 245px;
+}
+
+/* Card content */
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 11px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.homeTown,
+.purpose {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.purpose {
+  margin-bottom: 15px;
+}
+
+
+
+.buttons {
+  margin-top: 15px;
+}
+
+button.call {
+  background: black;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-right: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+button.msg {
+  background: #eee;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-container {
+  display: none;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  background: white;
+  padding: 24px;
+  border-radius: 22px;
+  width: 30rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+input[type="text"] {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 12px 22px;
+  border: none;
+  background-color: rgb(26, 25, 25);
+  margin-top: 10px;
+  color: white;
+  padding: 14px;
+  border-radius: 100px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-transform: capitalize;
+}
+
+.submit-btn:hover {
+  background: #000;
+}
+
+.closeForm {
+  width: 100%;
+  padding: 12px 22px;
+  margin-top: 10px;
+  background-color: #ff4a4a;
+  border: none;
+  color: #ffe1e1;
+  font-weight: 500;
+  border-radius: 100px;
+  text-transform: capitalize;
+}
