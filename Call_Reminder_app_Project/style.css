@@ -127,6 +127,21 @@ body {
   box-shadow: 5px 11px 20px grey;
 }
 
+.onlyOneCard{
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  background-color: white;
+  box-shadow: 5px 11px 20px grey;
+  z-index: 3;
+  transform: scale(1.07);
+}
+
 .card:nth-child(1) {
   z-index: 0;
   left: -245px;

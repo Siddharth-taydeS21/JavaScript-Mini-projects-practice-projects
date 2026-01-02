@@ -10,7 +10,7 @@
 
 let form = document.querySelector('form');
 let textInputs = form.querySelectorAll('input[type="text"]');
-let stack =  document.querySelector('.stack');
+let stack = document.querySelector('.stack');
 let leftbtn = document.querySelector("#leftbtn");
 let rightbtn = document.querySelector("#rightbtn");
 let deleteBtn = document.querySelector("#delete-all-notes");
@@ -71,7 +71,8 @@ function formValidation() {
             saveToLocalStorage(obj)
         }
         form.reset();
-        document.querySelector('.form-container').style.display = "none"
+        document.querySelector('.form-container').style.display = "none";
+        createCrads();
         location.reload();
     })
 }
@@ -92,62 +93,66 @@ function saveToLocalStorage(obj) {
         localStorage.setItem('tasks', newArr)
     }
 }
-saveToLocalStorage()
+
 
 // Logic for creating cards 
 function createCrads() {
     let task = localStorage.getItem('tasks');
     TaskArr = JSON.parse(task)
-    TaskArr.forEach((user) => {
-        if (user !== null) { 
-        let div = document.createElement('div');
-        div.classList.add("card")
+    let newArr = TaskArr.filter((val)=>{return val !== null});
+    // we dont need null values to create cards, becuse onlyonecard logic can't run if the array contains null values
+    newArr.forEach((user) => {
+            let div = document.createElement('div');
+            if (newArr.length === 1) {
+                div.classList.add('onlyOneCard');
+                //if the card is only one we need to show it in center..
+            }else{
+                div.classList.add('card')
+            }
 
-        let img = document.createElement('img');
-        img.classList.add('avatar');
-        img.setAttribute('src', user.img)
+            let img = document.createElement('img');
+            img.classList.add('avatar');
+            img.setAttribute('src', user.img)
 
-        let heading =  document.createElement('h2');
-        heading.textContent = user.userName;
+            let heading = document.createElement('h2');
+            heading.textContent = user.userName;
 
-        let town = document.createElement('div');
-        town.classList.add("homeTown")
-        town.innerHTML = `<p>Home</p><p>${user.hometown}</p>`
+            let town = document.createElement('div');
+            town.classList.add("homeTown")
+            town.innerHTML = `<p>Home</p><p>${user.hometown}</p>`
 
-        let purpose = document.createElement('div');
-        purpose.classList.add("purpose")
-        purpose.innerHTML = `<p>Purpose</p><p>${user.purpose}</p>`
+            let purpose = document.createElement('div');
+            purpose.classList.add("purpose")
+            purpose.innerHTML = `<p>Purpose</p><p>${user.purpose}</p>`
 
-        let call = document.createElement("button");
-        call.textContent = "Call";
-        call.classList.add("call")
+            let call = document.createElement("button");
+            call.textContent = "Call";
+            call.classList.add("call")
 
-        let massage = document.createElement("button");
-        massage.textContent = "Massage";
-        massage.classList.add("msg");
+            let massage = document.createElement("button");
+            massage.textContent = "Massage";
+            massage.classList.add("msg");
 
-        div.appendChild(img);
-        div.appendChild(heading);
-        div.appendChild(town);
-        div.appendChild(purpose);
-        div.appendChild(call);
-        div.appendChild(massage);
+            div.appendChild(img);
+            div.appendChild(heading);
+            div.appendChild(town);
+            div.appendChild(purpose);
+            div.appendChild(call);
+            div.appendChild(massage);
 
-        stack.appendChild(div)  
-            
-        }
+            stack.appendChild(div);
     })
 }
 createCrads();
 
 // Logic for right and left buttons
-rightbtn.addEventListener('click',()=>{
+rightbtn.addEventListener('click', () => {
     let lastChild = stack.lastElementChild;
     if (lastChild) {
         stack.insertBefore(lastChild, stack.firstElementChild)
     }
 })
-leftbtn.addEventListener('click',()=>{
+leftbtn.addEventListener('click', () => {
     let firstChild = stack.firstElementChild;
     if (firstChild) {
         stack.appendChild(firstChild, stack.lastElementChild)
@@ -155,8 +160,8 @@ leftbtn.addEventListener('click',()=>{
 })
 
 // Logic for deleteting all notes(cards) 
-deleteBtn.addEventListener('click', ()=>{
+deleteBtn.addEventListener('click', () => {
     localStorage.clear();
-    location.reload();
-    console.log("clered")
+    stack.innerHTML = '';
+    fromContainer.style.display = "initial"
 })
